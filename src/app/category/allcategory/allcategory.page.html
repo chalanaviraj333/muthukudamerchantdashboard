@@ -1,0 +1,23 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>ALL CATEGORIES</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+
+      <ion-col size="10" offset="1" *ngFor="let category of allCategories">
+  <ion-item>
+    <ion-label class="ion-text-capitalize categoryName">{{category.categoryName}}</ion-label>
+    <ion-badge *ngIf="category.categoryItems">{{category.categoryItems.length}}</ion-badge>
+  </ion-item>
+  </ion-col>
+  </ion-row>
+  </ion-grid>
+
+</ion-content>

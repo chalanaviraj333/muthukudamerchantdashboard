@@ -3,21 +3,22 @@
     <ion-menu contentId="main-content" type="overlay">
       <ion-content>
         <ion-list id="inbox-list">
-          <ion-list-header>Tapsy Locksmith</ion-list-header>
-          <ion-note>Holland Park West</ion-note>
-
-          <!-- <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages; let i = index">
-            <ion-item routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false" routerLinkActive="selected">
-              <ion-icon slot="start" src={{p.icon}}></ion-icon>
-              <ion-label>{{ p.title }}</ion-label>
-            </ion-item>
-          </ion-menu-toggle> -->
-
+          <ion-item>
+            <ion-label class="ion-text-wrap">
+              <ion-text color="primary">
+                <ion-list-header>YoBox.</ion-list-header>
+              </ion-text>
+              <ion-note class="sidemenuTitles">Part of Muthukuda Merchants</ion-note>
+            </ion-label>
+            <ion-icon class="mainlogo" slot="end" src="assets/icon/logo.svg"></ion-icon>
+          </ion-item>
+          
+          
         <div *ngFor="let p of appPages">
           <ion-menu-toggle *ngIf="p.url" auto-hide="false">
             <ion-item routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false">
               <ion-icon src={{p.icon}} slot="start"></ion-icon>
-              <ion-label>
+              <ion-label class="sidemenuTitles">
                 {{p.title}}
               </ion-label>
             </ion-item>
@@ -25,7 +26,7 @@
           </ion-menu-toggle>
 
           <ion-item button *ngIf="p.children?.length > 0" (click)="p.open = !p.open" [class.active-parent]="p.open" detail="false" lines="none">
-            <ion-label>
+            <ion-label class="sidemenuTitles">
               {{p.title}}
             </ion-label>
             <ion-icon slot="start" name="arrow-forward" *ngIf="!p.open"></ion-icon>
@@ -37,7 +38,7 @@
             <ion-menu-toggle auto-hide="false">
               <ion-item class="sub-item" *ngFor="let sub of p.children" routerDirection="root" [routerLink]="[sub.url]" lines="none" detail="false" routerLinkActive="selected">
                 <ion-icon src={{sub.icon}} slot="start"></ion-icon>
-                <ion-label>
+                <ion-label class="sidemenuTitles">
                   {{sub.title}}
                 </ion-label>
               </ion-item>
@@ -49,12 +50,12 @@
         </ion-list>
 
         <ion-list id="labels-list">
-          <ion-list-header>Labels</ion-list-header>
+          <ion-list-header class="shortcutsTitles">Shortcuts</ion-list-header>
           <ion-label>{{numberOfCarRemote}}</ion-label>
 
-          <ion-item *ngFor="let label of labels" lines="none">
-            <ion-icon slot="start" ios="bookmark-outline" md="bookmark-sharp"></ion-icon>
-            <ion-label>{{ label }}</ion-label>
+          <ion-item *ngFor="let shortcut of shortcuts" lines="none">
+            <ion-icon slot="start" ios="bookmark-outline" md="bookmark-sharp" color="primary"></ion-icon>
+            <ion-label class="sidemenuTitles">{{ shortcut }}</ion-label>
           </ion-item>
         </ion-list>
       </ion-content>

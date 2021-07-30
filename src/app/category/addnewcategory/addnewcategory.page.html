@@ -1,0 +1,26 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>ADD PRODUCTS</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form #f="ngForm" (ngSubmit)="onSubmit(f)">
+
+    <ion-item>
+      <ion-label class="inputClass" position="floating">Category Name</ion-label>
+      <ion-input class="inputClass ion-text-capitalize" type="text" ngModel name="categoryName" required #categoryNameCtrl="ngModel"></ion-input>
+    </ion-item>
+    <ion-item *ngIf="!categoryNameCtrl.valid && categoryNameCtrl.touched" lines="none">
+      <ion-label class="fontFamily" color="danger">Category Name field should not be empty</ion-label>
+    </ion-item>
+
+    <br>
+    <ion-button class="addCarButton fontFamily" color="success" type="submit" expand="block" shape="round" [disabled]="!f.valid">ADD CATEGORY</ion-button>
+
+  </form>
+
+</ion-content>

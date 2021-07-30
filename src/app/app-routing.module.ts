@@ -91,6 +91,34 @@ const routes: Routes = [
     path: 'carremote/remotedetailspage/:selectedRemote',
     loadChildren: () => import('./carremote/remotedetailspage/remotedetailspage.module').then( m => m.RemotedetailspagePageModule)
   },
+  {
+    path: 'allproducts',
+    loadChildren: () => import('./product/allproducts/allproducts.module').then( m => m.AllproductsPageModule)
+  },
+  {
+    path: 'addproduct',
+    loadChildren: () => import('./product/addproduct/addproduct.module').then( m => m.AddproductPageModule)
+  },
+  {
+    path: 'editproduct',
+    loadChildren: () => import('./product/editproduct/editproduct.module').then( m => m.EditproductPageModule)
+  },
+  {
+    path: 'deleteproduct',
+    loadChildren: () => import('./product/deleteproduct/deleteproduct.module').then( m => m.DeleteproductPageModule)
+  },
+  {
+    path: 'productswithoutcategory',
+    loadChildren: () => import('./category/productswithoutcategory/productswithoutcategory.module').then( m => m.ProductswithoutcategoryPageModule)
+  },
+  {
+    path: 'allcategory',
+    loadChildren: () => import('./category/allcategory/allcategory.module').then( m => m.AllcategoryPageModule)
+  },
+  {
+    path: 'addnewcategory',
+    loadChildren: () => import('./category/addnewcategory/addnewcategory.module').then( m => m.AddnewcategoryPageModule)
+  },
   //   path: '',
   //   redirectTo: 'folder/Inbox',
   //   pathMatch: 'full'

@@ -13,6 +13,31 @@ export class AppComponent implements OnInit {
 
 
   public appPages = [
+    { title: 'Sales',
+    numberofitems: 0,
+      children: [
+        {
+          title: 'All Sales',
+          url: '/',
+          icon: 'assets/icon/all.svg'
+        },
+        {
+          title: 'Add Sale',
+          url: '/',
+          icon: 'assets/icon/add.svg'
+        },
+        {
+          title: 'Edit Sale',
+          url: '/',
+          icon: 'assets/icon/edit.svg'
+        },
+        {
+          title: 'Delete Sale',
+          url: '/',
+          icon: 'assets/icon/delete.svg'
+        },
+      ]
+    },
     { title: 'Customers',
       numberofitems: 0,
       children: [
@@ -43,110 +68,107 @@ export class AppComponent implements OnInit {
         }
       ]
     },
-    { title: 'Car Remotes',
+    { title: 'Products',
     numberofitems: 0,
       children: [
         {
-          title: 'All Remotes',
-          url: '/allremotes',
+          title: 'All Products',
+          url: '/allproducts',
           icon: 'assets/icon/all.svg'
         },
         {
-          title: 'Add Remote',
-          url: '/addremote',
+          title: 'Add New Product',
+          url: '/addproduct',
           icon: 'assets/icon/add.svg'
         },
         {
-          title: 'Edit Remote',
-          url: '/editremote',
+          title: 'Edit Product',
+          url: '/editproduct',
           icon: 'assets/icon/edit.svg'
         },
         {
-          title: 'Delete Remote',
-          url: '/deleteremote',
+          title: 'Delete Product',
+          url: '/deleteproduct',
+          icon: 'assets/icon/delete.svg'
+        },
+
+        // All Categories
+        {
+          title: 'All Categories',
+          url: '/allcategories',
+          icon: 'assets/icon/all.svg'
+        },
+        {
+          title: 'Add New Category',
+          url: '/addproduct',
+          icon: 'assets/icon/add.svg'
+        },
+        {
+          title: 'Products Without Category',
+          url: '/editproduct',
+          icon: 'assets/icon/edit.svg'
+        },
+        {
+          title: 'Delete Category',
+          url: '/deleteproduct',
           icon: 'assets/icon/delete.svg'
         },
       ]
     },
-    { title: 'Remote Shells',
+    { title: 'Categories',
     numberofitems: 0,
       children: [
         {
-          title: 'All Remote-Shells',
-          url: '/allremoteshells',
+          title: 'All Categories',
+          url: '/allcategory',
           icon: 'assets/icon/all.svg'
         },
         {
-          title: 'Add Remote-Shell',
-          url: '/addremoteshell',
+          title: 'Add New Category',
+          url: '/addnewcategory',
           icon: 'assets/icon/add.svg'
         },
         {
-          title: 'Edit Remote-Shell',
-          url: '/editremoteshell',
+          title: 'Products Without Category',
+          url: '/productswithoutcategory',
           icon: 'assets/icon/edit.svg'
         },
         {
-          title: 'Delete Remote-Shell',
-          url: '/deleteremoteshell',
+          title: 'Delete Category',
+          url: '/deleteproduct',
           icon: 'assets/icon/delete.svg'
         },
       ]
     },
-    { title: 'Car Brands',
+    { title: 'Storehouse',
     numberofitems: 0,
       children: [
         {
-          title: 'All Car Brands',
-          url: '/allcarbrands',
+          title: 'View Stock',
+          url: '/',
           icon: 'assets/icon/all.svg'
         },
         {
-          title: 'Add Car Brand',
-          url: '/addcarbrand',
+          title: 'Update Stock',
+          url: '/',
           icon: 'assets/icon/add.svg'
         },
         {
-          title: 'Edit Car Brand',
-          url: '/editcarbrand',
+          title: 'Change Financila Year',
+          url: '/',
           icon: 'assets/icon/edit.svg'
         },
         {
-          title: 'Delete Car Brand',
-          url: '/deletecarbrand',
+          title: 'Delete Product',
+          url: '/',
           icon: 'assets/icon/delete.svg'
         },
       ]
-    },
-    { title: 'Car Models',
-      numberofitems: 0,
-      children: [
-        {
-          title: 'All Car Models',
-          url: '/allcarmodels',
-          icon: 'assets/icon/all.svg'
-        },
-        {
-          title: 'Add Car Model',
-          url: '/addcarmodel',
-          icon: 'assets/icon/add.svg'
-        },
-        {
-          title: 'Edit Car Model',
-          url: '/editcarmodel',
-          icon: 'assets/icon/edit.svg'
-        },
-        {
-          title: 'Delete Car Model',
-          url: '/deletecarmodel',
-          icon: 'assets/icon/delete.svg'
-        },
-      ]
-    },
+    }
 
   ];
 
-  public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
+  public shortcuts = ['Add New Customer', 'Add New Product', 'Add Stock', 'Last Sale Receipt'];
   constructor(private http: HttpClient ) {
 
   }
@@ -154,48 +176,9 @@ export class AppComponent implements OnInit {
 
   async ngOnInit() {
 
-    await this.http
-   .get<{ [key: string]: string }>(
-     "https://tapsystock-a6450-default-rtdb.firebaseio.com/remotes.json"
-   )
-   .subscribe((resData) => {
-     for (const key in resData) {
-       if (resData.hasOwnProperty(key)) {
-         this.appPages[1].numberofitems = this.appPages[1].numberofitems + 1;
-       }
-     }
-
-   });
-
    await this.http
    .get<{ [key: string]: string }>(
-     "https://tapsystock-a6450-default-rtdb.firebaseio.com/car-brand.json"
-   )
-   .subscribe((resData) => {
-     for (const key in resData) {
-       if (resData.hasOwnProperty(key)) {
-         this.appPages[3].numberofitems = this.appPages[3].numberofitems + 1;
-       }
-     }
-
-   });
-
-   await this.http
-   .get<{ [key: string]: string }>(
-     "https://tapsystock-a6450-default-rtdb.firebaseio.com/car-model.json"
-   )
-   .subscribe((resData) => {
-     for (const key in resData) {
-       if (resData.hasOwnProperty(key)) {
-         this.appPages[4].numberofitems = this.appPages[4].numberofitems + 1;
-       }
-     }
-
-   });
-
-   await this.http
-   .get<{ [key: string]: string }>(
-     "https://tapsystock-a6450-default-rtdb.firebaseio.com/remote-shells.json"
+     "https://muthukudamerchant-496e8-default-rtdb.firebaseio.com/newlyaddedproductswithoutimage.json"
    )
    .subscribe((resData) => {
      for (const key in resData) {

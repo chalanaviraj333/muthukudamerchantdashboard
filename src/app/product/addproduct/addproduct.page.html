@@ -1,0 +1,92 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>ADD PRODUCTS</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button>
+      <ion-text id="itemnumberID">{{itemNumber}}</ion-text>
+    </ion-fab-button>
+  </ion-fab>
+
+  <form #f="ngForm" (ngSubmit)="onSubmit(f)">
+
+    <ion-item>
+      <ion-label class="inputClass" position="floating">Product Name</ion-label>
+      <ion-input class="inputClass ion-text-capitalize" type="text" ngModel name="productName" clearInput required #productNameCtrl="ngModel"></ion-input>
+    </ion-item>
+    <ion-item *ngIf="!productNameCtrl.valid && productNameCtrl.touched" lines="none">
+      <ion-label class="fontFamily" color="danger">Product Name field should not be empty</ion-label>
+    </ion-item>
+  
+    <ion-item>
+      <ion-label class="inputClass" position="floating">Quantity in Stock</ion-label>
+      <ion-input class="inputClass" type="number" [value]="defaultQuantityinStock" (ionChange)="_ionChangeQIS($event)"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-input class="inputClass" type="text" placeholder="Product Weight" ngModel name="productWeight" clearInput required #productWeightCtrl="ngModel"></ion-input>
+      <div class="ion-text-warp">
+
+        <ion-segment (ionChange)="segmentChanged($event)" value="G">
+          <ion-segment-button value="G">
+            <ion-label class="fontFamily">Grams</ion-label>
+          </ion-segment-button>
+          <ion-segment-button value="KG">
+            <ion-label class="fontFamily">Kilo</ion-label>
+          </ion-segment-button>
+          <ion-segment-button value="ML">
+            <ion-label class="fontFamily">Mil</ion-label>
+          </ion-segment-button>
+          <ion-segment-button value="L">
+            <ion-label class="fontFamily">L</ion-label>
+          </ion-segment-button>
+        </ion-segment>
+        
+      </div>
+      
+    </ion-item>
+    <ion-item *ngIf="!productWeightCtrl.valid && productWeightCtrl.touched" lines="none">
+      <ion-label class="fontFamily" color="danger">Product Weight field should not be empty</ion-label>
+    </ion-item>
+  
+    <ion-item>
+      <ion-label class="inputClass" position="floating">MRP</ion-label>
+      <ion-input class="inputClass" type="number" ngModel name="maxSellingPrice" clearInput required #maxsellingpriceCtrl="ngModel"></ion-input>
+    </ion-item>
+
+    <ion-item *ngIf="!maxsellingpriceCtrl.valid && maxsellingpriceCtrl.touched" lines="none">
+      <ion-label class="fontFamily" color="danger">MRP Should not be empty</ion-label>
+    </ion-item>
+  
+    <ion-item>
+      <ion-label class="inputClass" position="floating">Our Price</ion-label>
+      <ion-input class="inputClass" type="number" ngModel name="ourPrice" clearInput required #oursellingpriceCtrl="ngModel"></ion-input>
+    </ion-item>
+
+    <ion-item *ngIf="!oursellingpriceCtrl.valid && oursellingpriceCtrl.touched" lines="none">
+      <ion-label class="fontFamily" color="danger">Our Price Should not be empty</ion-label>
+    </ion-item>
+
+    <ion-item>
+      <ion-label class="inputClass" position="floating">Max Quantity Limit</ion-label>
+      <ion-input class="inputClass" type="number" [value]="maxQuantityLimit" (ionChange)="_ionChangeMOQ($event)"></ion-input>
+    </ion-item>
+
+    <ion-item lines="none">
+      <ion-label class="inputClass" position="floating">Min Quantity Limit</ion-label>
+      <ion-input class="inputClass" type="number" [value]="minQuantityLimit" (ionChange)="_ionChangeMinOQ($event)"></ion-input>
+    </ion-item>
+
+    <br>
+    <ion-button class="addCarButton fontFamily" color="success" type="submit" expand="block" shape="round" [disabled]="!f.valid">ADD PRODUCT</ion-button>
+
+  </form>
+  
+
+</ion-content>
